@@ -9,3 +9,11 @@ WHERE V.visit_id NOT IN (SELECT DISTINCT(V.visit_id)
                         ON V.visit_id=T.visit_id)
 GROUP BY V.customer_id
 ORDER BY count_no_trans
+
+# Alternative
+SELECT customer_id, COUNT(customer_id) AS count_no_trans
+FROM Visits
+WHERE visit_id NOT IN (SELECT DISTINCT(visit_id)
+                        FROM Transactions)
+GROUP BY customer_id
+ORDER BY count_no_trans
