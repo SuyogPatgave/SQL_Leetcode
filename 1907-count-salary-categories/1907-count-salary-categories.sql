@@ -1,8 +1,9 @@
-SELECT 'Low Salary' AS category, COUNT(CASE WHEN income<20000 THEN 1 END) AS accounts_count
+# Write your MySQL query statement below
+SELECT 'Low Salary' AS category, COUNT(IF(income<20000, 1, null)) AS accounts_count
 FROM accounts
 UNION ALL
-SELECT 'Average Salary', COUNT(CASE WHEN income>=20000 AND income<=50000 THEN 1 END)
+SELECT 'Average Salary', COUNT(IF(income>=20000 AND income<=50000, 1, null))
 FROM accounts
 UNION ALL
-SELECT 'High Salary', COUNT(CASE WHEN income>50000 THEN 1 END)
-FROM accounts-- Write your PostgreSQL query statement below
+SELECT 'High Salary', COUNT(IF(income>50000, 1, null))
+FROM accounts
